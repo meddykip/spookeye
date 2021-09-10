@@ -5,23 +5,36 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
 
-// PUBLIC tuning variables
+//////// PUBLIC tuning variables /////////
 
     public float speed; // how fast the player moves
 
-// REFERENCES to components
+//////// REFERENCES to components ///////////
 
     Rigidbody2D myBody;
 
-// PRIVATE code
+//////////// PRIVATE code //////////
 
-    float moveDir = 1;
+    float moveDir = 0;
     // the player will move right by default
 
-// SPRITES !!
+/////////// SPRITES !! ////////////
 
     SpriteRenderer myRenderer;
 
+    public Sprite shootSprite;
+    public Sprite walkSprite;
+
+//////////// BOOLS .... //////////////
+
+    public bool SPOOKBREAD = false; 
+        // to turn on / off shooting the bread !
+
+    //public bool startSHOOT = false; 
+        // to detect when the shooting portion of the game starts
+
+    public bool playerMOVE = false; 
+        // to control player movement
 
     // Start is called before the first frame update
     void Start()
@@ -36,34 +49,47 @@ public class playerMovement : MonoBehaviour
         
     }
 
-    void FixedUpdate(){ // runs first
-        HandleMovement();
+// runs first
+    void FixedUpdate(){ 
         ChecKeys();
+        HandleMovement();
     }
 
+// to check what keys the player is pressing
     void ChecKeys(){
-        if(Input.GetKey(KeyCode.RightArrow)){
-            moveDir = 1;
-            Debug.Log("RIGHT RIGHT RIGHT RIGHT");
+    
+    // press 5 to start game !!!
+        if(Input.GetKey(KeyCode.Alpha5)){
+            playerMOVE = true;
+        }
+
+    // code for moving !!
+        if (playerMOVE){
+            if(Input.GetKey(KeyCode.RightArrow)){
+                moveDir = 1;
+                Debug.Log("RIGHT RIGHT RIGHT RIGHT");
+            } else if(Input.GetKey(KeyCode.LeftArrow)){
+                moveDir = -1;
+                Debug.Log("LEFT LEFT LEFT LEFT");
+            } else {
+                moveDir = 0;
+            }
+        }
+        
+
+    // code for shooting the bread !!
+        if(Input.GetKeyDown(KeyCode.RightControl) || (Input.GetKeyDown(KeyCode.LeftControl))){
+            Debug.Log("BANG ");
+            SPOOKBREAD = true;
         } else {
-            moveDir = 0;
+            SPOOKBREAD = false;
         }
-        if(Input.GetKey(KeyCode.LeftArrow)){
-            moveDir = -1;
-            Debug.Log("LEFT LEFT LEFT LEFT");
-        }
-        
-        if(Input.GetKey(KeyCode.LeftArrow) && (Input.GetKey(KeyCode.RightArrow))){
-            Debug.Log("hotel? trivago.");
-        }
-        
-        if(Input.GetKeyUp(KeyCode.LeftArrow) && (Input.GetKeyUp(KeyCode.RightArrow))){
-            Debug.Log("vibe? checked.");
-        }
+
     }
 
-        // code to handle movement from a class tutorial... :)
+    // code to handle movement from the tutorial... :)
     void HandleMovement(){
         myBody.velocity = new Vector3(moveDir * speed, myBody.velocity.y);
     }
+
 }
