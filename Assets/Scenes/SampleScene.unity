@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 956454448}
   m_Layer: 0
   m_Name: wall (4)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -379,12 +379,12 @@ GameObject:
   - component: {fileID: 1333827076}
   - component: {fileID: 1333827077}
   m_Layer: 0
-  m_Name: babySpawner
+  m_Name: angelSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1333827076
 Transform:
   m_ObjectHideFlags: 0
@@ -413,7 +413,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBaby: {fileID: 3443255358452836678, guid: 95ea7b197d634c14aa7829bbdddda708,
     type: 3}
+  enemyFly: {fileID: 3128252928219618182, guid: 73e051bce80c25b458f305f9df0686de,
+    type: 3}
   spawnRate: 2
+  babySummon: {fileID: 688009847751915664, guid: a6042ce0362044b4483d5c8126f17928,
+    type: 3}
+  spawnRatefly: 30
+  babyTIME: 1
 --- !u!1 &1453864263
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +434,7 @@ GameObject:
   - component: {fileID: 1453864265}
   m_Layer: 0
   m_Name: wall (3)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,7 +564,7 @@ GameObject:
   - component: {fileID: 1472707094}
   m_Layer: 0
   m_Name: wall (1)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,6 +796,7 @@ MonoBehaviour:
   walkSprite: {fileID: 0}
   SPOOKBREAD: 0
   playerMOVE: 0
+  spawngel: {fileID: 1333827075}
 --- !u!212 &1892894787
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -882,7 +889,7 @@ GameObject:
   - component: {fileID: 2092211338}
   m_Layer: 0
   m_Name: wall (2)
-  m_TagString: Untagged
+  m_TagString: leftWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

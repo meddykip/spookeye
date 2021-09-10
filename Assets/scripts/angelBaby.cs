@@ -5,7 +5,7 @@ using UnityEngine;
 public class angelBaby : MonoBehaviour
 {
 
-    public bool babyACTIVE = false;
+    public bool babyACTIVE = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +16,13 @@ public class angelBaby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        checkSelf();
     }
 
-// to check if angelBaby is on the screen
-    void OnBecameVisible(){ // if it is
-        Debug.Log("angelspawn"); // lmk !
-        babyACTIVE = true;
+    void checkSelf(){
+        if (gameObject.activeSelf){
+            Debug.Log("BABY INACTIVE ...... ");
+            babyACTIVE = false;
+        } 
     }
 }

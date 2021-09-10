@@ -36,11 +36,15 @@ public class playerMovement : MonoBehaviour
     public bool playerMOVE = false; 
         // to control player movement
 
+////////////   REFERENCING others ..... /////////
+
+    public GameObject spawngel; // to spawn the angels
+
     // Start is called before the first frame update
     void Start()
     {
         myBody = gameObject.GetComponent<Rigidbody2D>();
-
+        
     }
 
     // Update is called once per frame
@@ -60,7 +64,8 @@ public class playerMovement : MonoBehaviour
     
     // press 5 to start game !!!
         if(Input.GetKey(KeyCode.Alpha5)){
-            playerMOVE = true;
+            playerMOVE = true; // player can move
+            spawngel.SetActive(true); // angels will start to spawn ...
         }
 
     // code for moving !!
