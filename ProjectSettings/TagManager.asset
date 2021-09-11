@@ -6,6 +6,10 @@ TagManager:
   tags:
   - wall
   - leftWall
+  - bread
+  - angelbaby
+  - angelfly
+  - ghostbeam
   layers:
   - Default
   - TransparentFX
@@ -15,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - player
+  - bread
   - 
   - 
   - 

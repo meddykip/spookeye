@@ -5,10 +5,13 @@ using UnityEngine;
 public class playerShoot : MonoBehaviour
 {
 
-// PUBLIC
+// PUBLIC tingz....
     public GameObject beam; // the player's ghost bullet >:)
     public GameObject baker; // the player :)
 
+    public Transform beamTip; // the origin of the ghost beams !!
+
+    public bool facingRight = true; // to detect flipping ..
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +23,29 @@ public class playerShoot : MonoBehaviour
     void Update()
     {
         if(baker.GetComponent<playerMovement>().SPOOKBREAD){
-            // shoot up
-            GameObject gbeam = (GameObject)Instantiate (beam, transform.position, Quaternion.identity);
+            // shoot up !
+            
+            GameObject gbeam = (GameObject)Instantiate (beam, beamTip.position, Quaternion.identity);
 
             gbeam.GetComponent<bulletBehavior>().ySpeed = 1f;
         }
+        
+    }
+
+////////// FLIPPING CODE ///////////
+    // from : https://www.reddit.com/r/Unity2D/comments/4bwclp/rotating_child_objects_and_transformlocalscale/ !!
+
+    public void Flip(){
+            facingRight = false;
+            Vector3 theScale = transform.localScale;
+            theScale.x = 1;
+            transform.localScale = theScale;
+    }
+
+    public void unFlip(){
+            facingRight = true;
+            Vector3 theScale = transform.localScale;
+            theScale.x = -1;
+            transform.localScale = theScale;
     }
 }

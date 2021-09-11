@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8039452400904562305}
   - component: {fileID: -254183125670357329}
   - component: {fileID: -2903872474295700025}
-  - component: {fileID: 1529631925865448379}
+  - component: {fileID: 7690666438588822955}
   m_Layer: 0
   m_Name: beam
-  m_TagString: Untagged
+  m_TagString: ghostbeam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1529631925865448379
+--- !u!114 &7690666438588822955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ySpeed: 1
+  ghostbread: {fileID: 7482944475345535462, guid: 91d5f24100ba8884e906db7457a32db2,
+    type: 3}
