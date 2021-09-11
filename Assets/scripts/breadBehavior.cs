@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class breadBehavior : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class breadBehavior : MonoBehaviour
     public float speed;
 
 // PRIVATE code
-    bool onFloor = false;
+    //bool onFloor = false;
         // to check when the bread hits the floor to signal when to restart the game
 
 //  REFERENCES to components
@@ -74,6 +75,37 @@ public class breadBehavior : MonoBehaviour
                 myBody.velocity += Vector2.up * Physics.gravity.y * (jumpMultiplier * 1f)* Time.deltaTime;
 
             }
+        }
+    }
+
+// when the bread collides with the walls ... ..
+    void OnCollisionEnter2D(Collision2D wall){
+        if(wall.gameObject.gameObject.tag == "topwall"){
+            Debug.Log("TOP TOP TOP TOP");
+            scoreScript.scoreValue += 70;
+
+        } else if(wall.gameObject.gameObject.tag == "rightwall"){
+            Debug.Log("RIGHT RIGHT RIGHT RIGHT");
+            scoreScript.scoreValue += 350;
+
+        } else if(wall.gameObject.gameObject.tag == "leftwall"){
+            Debug.Log("LEFT LEFT LEFT LEFT");
+            scoreScript.scoreValue += 350;
+            
+        }
+
+        if(wall.gameObject.gameObject.tag == "gameover"){
+            Debug.Log(". .... .... . game over .. ... ... ");
+            
+            gravityMultiplier = 1;
+            myBody.constraints = RigidbodyConstraints2D.FreezeAll;
+            StartCoroutine(restartNOW()); 
+        }
+
+    // to RESTART the game ...!
+        IEnumerator restartNOW(){
+            yield return new WaitForSeconds (3f); // after 5 seconds , 
+            SceneManager.LoadScene("Sppokyeye");
         }
     }
 }

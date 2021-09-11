@@ -36,16 +36,16 @@ public class playerShoot : MonoBehaviour
     // from : https://www.reddit.com/r/Unity2D/comments/4bwclp/rotating_child_objects_and_transformlocalscale/ !!
 
     public void Flip(){
-            facingRight = false;
+            facingRight = true;
             Vector3 theScale = transform.localScale;
-            theScale.x = 1;
+            theScale.x = 1.263919f;
             transform.localScale = theScale;
     }
 
     public void unFlip(){
-            facingRight = true;
+            facingRight = false;
             Vector3 theScale = transform.localScale;
-            theScale.x = -1;
+            theScale.x = -1.263919f;
             transform.localScale = theScale;
     }
 }

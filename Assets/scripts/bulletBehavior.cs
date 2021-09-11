@@ -11,6 +11,8 @@ public class bulletBehavior : MonoBehaviour
 
     public GameObject ghostbread;
 
+    public GameObject babyCheck;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class bulletBehavior : MonoBehaviour
         // to regularly self destruct ... .
 
         ghostbread.GetComponent<breadBehavior>();
+        babyCheck.GetComponent<angelSpawner>();
     }
 
     // Update is called once per frame
@@ -33,16 +36,19 @@ public class bulletBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.gameObject.tag == "bread"){
             Debug.Log("BREAD CRUMBS!! BREAD BREAD");
-            
-            // add +5 points
+            scoreScript.scoreValue += 2;
 
         } else if (other.gameObject.gameObject.tag == "angelbaby"){
             Debug.Log("BABY DESTROYED........ ");
-            // add +50 points
+            scoreScript.scoreValue += 30;
 
+            Destroy(other.gameObject);
+            
         } else if (other.gameObject.gameObject.tag == "angelfly"){
             Debug.Log("FLY GONE.....!!!!!");
-            // add +1000 points
+            scoreScript.scoreValue += 500;
+
+            Destroy(other.gameObject);
 
         } 
     }

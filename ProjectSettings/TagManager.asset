@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - wall
-  - leftWall
   - bread
   - angelbaby
   - angelfly
   - ghostbeam
+  - gameover
+  - topwall
+  - leftwall
+  - rightwall
   layers:
   - Default
   - TransparentFX
