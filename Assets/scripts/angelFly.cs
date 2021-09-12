@@ -45,7 +45,7 @@ public class angelFly : MonoBehaviour
 
 // when the angel collides with the left wall , 
     void OnTriggerEnter2D (Collider2D other){
-        if (other.gameObject.tag == "leftWall"){
+        if (other.gameObject.tag == "leftwall"){
             Destroy(gameObject); // self destruct !!!
         }
     }
