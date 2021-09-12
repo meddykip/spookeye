@@ -13,6 +13,8 @@ public class breadBehavior : MonoBehaviour
 
     public float speed;
 
+    public Animator bready;
+
 // PRIVATE code
     //bool onFloor = false;
         // to check when the bread hits the floor to signal when to restart the game
@@ -26,14 +28,19 @@ public class breadBehavior : MonoBehaviour
 
     public GameObject baker;
 
+    public AudioSource breadHit;
+
     // Start is called before the first frame update
     void Start()
     {
+        bready = GetComponent<Animator>();
         myBody = gameObject.GetComponent<Rigidbody2D>();
         myBody.AddForce(new Vector2(20 * Time.deltaTime * speed, 20 * Time. deltaTime * speed));
 
         beamPush.GetComponent<bulletBehavior>();
         baker.GetComponent<playerMovement>();
+
+        
     }
 
     // Update is called once per frame
@@ -70,6 +77,11 @@ public class breadBehavior : MonoBehaviour
                 Debug.Log("huh !!!! huh um ... huh!!!!! okay .. HUH .. okay?");
                 myBody.velocity = new Vector3(myBody.velocity.x, jumpHeight);
 
+                bready.SetBool("haunted", true);
+                bready.SetBool("blessed", false);
+
+                breadHit.Play();
+
             } else if (myBody.velocity.y > 1){
 
                 myBody.velocity += Vector2.up * Physics.gravity.y * (jumpMultiplier * 1f)* Time.deltaTime;
@@ -84,19 +96,28 @@ public class breadBehavior : MonoBehaviour
             Debug.Log("TOP TOP TOP TOP");
             scoreScript.scoreValue += 70;
 
+            baker.GetComponent<playerMovement>().breadCorner.Play();
+
         } else if(wall.gameObject.gameObject.tag == "rightwall"){
             Debug.Log("RIGHT RIGHT RIGHT RIGHT");
             scoreScript.scoreValue += 350;
+
+            baker.GetComponent<playerMovement>().breadCorner.Play();
 
         } else if(wall.gameObject.gameObject.tag == "leftwall"){
             Debug.Log("LEFT LEFT LEFT LEFT");
             scoreScript.scoreValue += 350;
             
+            baker.GetComponent<playerMovement>().breadCorner.Play();
+
         }
 
         if(wall.gameObject.gameObject.tag == "gameover"){
             Debug.Log(". .... .... . game over .. ... ... ");
             
+            baker.GetComponent<playerMovement>().endingSFX.Play();
+            baker.GetComponent<playerMovement>().playerMOVE = false;
+
             gravityMultiplier = 1;
             myBody.constraints = RigidbodyConstraints2D.FreezeAll;
             StartCoroutine(restartNOW()); 
@@ -104,7 +125,7 @@ public class breadBehavior : MonoBehaviour
 
     // to RESTART the game ...!
         IEnumerator restartNOW(){
-            yield return new WaitForSeconds (3f); // after 5 seconds , 
+            yield return new WaitForSeconds (15f); // after 5 seconds , 
             SceneManager.LoadScene("Sppokyeye");
         }
     }

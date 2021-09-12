@@ -7,6 +7,13 @@ public class angelFly : MonoBehaviour
 
     public bool flyACTIVE = true;
     
+/////////////////  AUDIO .... 
+
+public AudioSource fly;
+
+public AudioClip flap;
+public AudioClip hit;
+
 ////////////////   AI FLYING CODE  /////////////   
         // AI flying from a tutorial :)
             // https://youtu.be/rn3tCuGM688 !!
@@ -19,6 +26,7 @@ public class angelFly : MonoBehaviour
     void Start()
     {
         mustFLY = true;
+        fly = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -34,6 +42,7 @@ public class angelFly : MonoBehaviour
     void checkSelf(){
         if (gameObject.activeSelf){
             Debug.Log(" FLYING ...... ");
+            
             //flyACTIVE = false;
         } 
     }
@@ -45,8 +54,24 @@ public class angelFly : MonoBehaviour
 
 // when the angel collides with the left wall , 
     void OnTriggerEnter2D (Collider2D other){
-        if (other.gameObject.tag == "leftwall"){
+        if (other.gameObject.gameObject.tag == "leftwall"){
             Destroy(gameObject); // self destruct !!!
+        } else if (other.gameObject.gameObject.tag == "ghostbeam"){
+
+            Debug.Log("FLY GONE.....!!!!!");
+            
+            fly.clip = hit;
+            fly.Play();
+
+            StartCoroutine(DESTRUCT());
+        
         }
+    }
+
+    IEnumerator DESTRUCT(){
+        yield return new WaitForSeconds (0.5f); // after seconds , 
+
+        Destroy(gameObject); // ... destroy gameobject!
+        StopCoroutine(DESTRUCT());
     }
 }

@@ -9,10 +9,14 @@ public class bulletBehavior : MonoBehaviour
 
     public float ySpeed = 0f;
 
+///////////// REFERENCES to other tingz .... .
+
     public GameObject ghostbread;
 
     public GameObject babyCheck;
-    
+
+    public GameObject baker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,9 @@ public class bulletBehavior : MonoBehaviour
 
         ghostbread.GetComponent<breadBehavior>();
         babyCheck.GetComponent<angelSpawner>();
+
+        baker.GetComponent<playerMovement>();
+
     }
 
     // Update is called once per frame
@@ -39,16 +46,12 @@ public class bulletBehavior : MonoBehaviour
             scoreScript.scoreValue += 2;
 
         } else if (other.gameObject.gameObject.tag == "angelbaby"){
-            Debug.Log("BABY DESTROYED........ ");
+            
             scoreScript.scoreValue += 30;
 
-            Destroy(other.gameObject);
-            
         } else if (other.gameObject.gameObject.tag == "angelfly"){
-            Debug.Log("FLY GONE.....!!!!!");
+            
             scoreScript.scoreValue += 500;
-
-            Destroy(other.gameObject);
 
         } 
     }

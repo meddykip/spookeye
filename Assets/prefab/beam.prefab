@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -254183125670357329}
   - component: {fileID: -2903872474295700025}
   - component: {fileID: 7690666438588822955}
+  - component: {fileID: -6407941474780333037}
   m_Layer: 0
   m_Name: beam
   m_TagString: ghostbeam
@@ -73,8 +74,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.17622566, a: 1}
+  m_Sprite: {fileID: -3526445287732910075, guid: 80045004b509ffb4eb8cb16410ceb320,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,3 +140,27 @@ MonoBehaviour:
     type: 3}
   babyCheck: {fileID: 1201134036159296744, guid: 0be8afa6e37290444aae9117bcdf259e,
     type: 3}
+  baker: {fileID: 3876161599526177480, guid: 065c1de306bb04d4baa7575b6c9e2aed, type: 3}
+  angelDown: {fileID: 7900887808681778004, guid: e4a4a2526a45c7c45959060e0ff07d81,
+    type: 3}
+  angelHit: {fileID: 780082637162065548, guid: 75e3dbbd20c5c0d429fc044e4be53abe, type: 3}
+  breadHit: {fileID: 401393564529032946, guid: cd82f4a03e514de47890f198bb861a3d, type: 3}
+--- !u!95 &-6407941474780333037
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263531135345869143}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d18251b8de2d2d41b994fdacd36fc9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

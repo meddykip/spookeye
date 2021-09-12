@@ -22,17 +22,25 @@ public class playerMovement : MonoBehaviour
 
     SpriteRenderer myRenderer;
 
-    public Sprite shootSprite;
-    public Sprite walkSprite;
-
     public Animator movie;
 
 ////////////// AUDIO ////////////////
 
-    AudioSource openingSFX;
-    AudioSource endingSFX;
+    public AudioSource openingSFX;
+    public AudioSource endingSFX;
 
-    AudioSource gunSFX;
+    public AudioSource coinEnterSFX;
+    public AudioSource startGAMESFX;
+
+    public AudioSource breadToss;
+    public AudioSource breadCorner;
+
+    public AudioSource scoreSFX;
+    public AudioSource score5000;
+
+    public AudioSource hitBorder;
+
+    public AudioSource gunSFX;
 
 //////////// BOOLS .... //////////////
 
@@ -44,6 +52,8 @@ public class playerMovement : MonoBehaviour
 
     public bool playerMOVE = false; 
         // to control player movement
+
+    public bool HIGHSCORELETSGO = false;
 
 ////////////   REFERENCING others ..... /////////
 
@@ -80,6 +90,8 @@ public class playerMovement : MonoBehaviour
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
         shooTip.GetComponent<playerShoot>();
         movie = GetComponent<Animator>();
+
+        
         
     }
 
@@ -93,19 +105,37 @@ public class playerMovement : MonoBehaviour
     void FixedUpdate(){ 
         ChecKeys();
         HandleMovement();
+
+        if (scoreScript.scoreValue >= 5000 && !HIGHSCORELETSGO){
+            
+
+            StartCoroutine(CELEBRATE());
+
+            Debug.Log("5000!!!!!! !! ! ");
+        }
     }
 
 // to check what keys the player is pressing
     void ChecKeys(){
     
     // press 5 to start game !!!
-    if (!startSHOOT){
-        if (Input.GetKey(KeyCode.Alpha5)){
+    
+        
+
+        if (Input.GetKey(KeyCode.Alpha5) && !startSHOOT){
             title.SetActive(false);
             instructions.SetActive(false);
             STARTgame.SetActive(true);
 
-        } else if(Input.GetKey(KeyCode.Alpha1)){
+            startGAMESFX.Stop();
+            coinEnterSFX.Play();
+
+            startSHOOT = true;
+
+        } else if(Input.GetKey(KeyCode.Alpha1) && startSHOOT){
+            startGAMESFX.Play();
+            breadToss.Play();
+
             STARTgame.SetActive(false);
             score.SetActive(true);
 
@@ -114,13 +144,13 @@ public class playerMovement : MonoBehaviour
             ghostbread.SetActive(true); // to activate the bread ....
             ghosTip.SetActive(true); // to activate shooting ...!!
             
-            startSHOOT = true;
+            
 
             movie.SetBool("standing", false);
         } else {
             movie.SetBool("standing", true);
         }
-    }
+    
 
     // code for moving !!
         if (playerMOVE){
@@ -147,6 +177,8 @@ public class playerMovement : MonoBehaviour
     // code for shooting the bread !!
         if(Input.GetKeyDown(KeyCode.RightControl) || (Input.GetKeyDown(KeyCode.LeftControl))){
             Debug.Log("BANG ");
+            gunSFX.Play();
+
             SPOOKBREAD = true;
         } else {
             SPOOKBREAD = false;
@@ -164,6 +196,24 @@ public class playerMovement : MonoBehaviour
         } else if (faceRight){
             shooTip.GetComponent<playerShoot>().Flip();
         }
+
     }
 
+    void OnCollisionEnter2D(Collision2D other){
+        if(other.gameObject.gameObject.tag == "rightwall"){
+            hitBorder.Play();
+        } else if(other.gameObject.gameObject.tag == "leftwall"){
+            hitBorder.Play();
+        }
+    }
+
+    IEnumerator CELEBRATE(){
+        yield return new WaitForSeconds (.1f); // after seconds , 
+
+        score5000.Play();
+        HIGHSCORELETSGO = true;
+
+        
+        StopCoroutine(CELEBRATE());
+    }
 }

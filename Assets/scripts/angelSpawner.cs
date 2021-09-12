@@ -37,11 +37,15 @@ public class angelSpawner : MonoBehaviour
 
     public bool babyTIME = true;
 
+///////////// REFERENCES to other tingz ...
+
+    public GameObject baker;
+
     // Start is called before the first frame update
     void Start()
     {
         babySummon.GetComponent<angelBaby>();   
-        
+        baker.GetComponent<playerMovement>();
     }
 
     // Update is called once per frame
@@ -63,8 +67,8 @@ public class angelSpawner : MonoBehaviour
 // SPAWN CODE
         if(Time.time >  nextSpawn){
             nextSpawn = Time.time + spawnRate;
-            randX = Random.Range(-6.7f, 6.1f);
-            whereToSpawn = new Vector2 (randX, 3.5f);
+            randX = Random.Range(-4.8f, 6.1f);
+            whereToSpawn = new Vector2 (randX, 3.0f);
 
             if(babySummon.GetComponent<angelBaby>().babyACTIVE){ // if angelBaby is active ...
                 Debug.Log("ANGELBABY SPAWN");
@@ -81,6 +85,8 @@ public class angelSpawner : MonoBehaviour
                 Instantiate (enemyBaby, whereToSpawn, Quaternion.identity);
                 babyCount += 1;
 
+                Debug.Log("SUMMONE...!!!!");
+
                 StartCoroutine(selfDestruct());
                 // to regularly self destruct ... . 
             }
@@ -96,6 +102,7 @@ public class angelSpawner : MonoBehaviour
             whereToSpawnfly = new Vector2 (randXfly, 3.5f);
 
             Instantiate (enemyFly, whereToSpawnfly, Quaternion.identity);
+
         }
     }
 
@@ -107,7 +114,7 @@ public class angelSpawner : MonoBehaviour
 
     IEnumerator selfDestruct(){
         yield return new WaitForSeconds (10f); // after a few seconds , 
-        Destroy(GameObject.FindGameObjectWithTag("angelbaby"), 2f); // ... destroy gameobject!
+        Destroy(GameObject.FindGameObjectWithTag("angelbaby"), 6f); // ... destroy gameobject!
         babyCount -= 1; // lessen baby count ?
     }
 }
