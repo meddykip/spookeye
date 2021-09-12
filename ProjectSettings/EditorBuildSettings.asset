@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Sppokyeye.unity
+    guid: 2b24b9194479db145bd08b6b3168032f
   m_configObjects: {}
