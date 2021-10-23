@@ -117,6 +117,9 @@ public class breadBehavior : MonoBehaviour
             
             baker.GetComponent<playerMovement>().endingSFX.Play();
             baker.GetComponent<playerMovement>().playerMOVE = false;
+            baker.GetComponent<playerMovement>().shootSTART = false;
+
+            baker.GetComponent<playerMovement>().spawngel.SetActive(false);
 
             gravityMultiplier = 1;
             myBody.constraints = RigidbodyConstraints2D.FreezeAll;

@@ -55,7 +55,9 @@ public AudioClip hit;
 // when the angel collides with the left wall , 
     void OnTriggerEnter2D (Collider2D other){
         if (other.gameObject.gameObject.tag == "leftwall"){
-            Destroy(gameObject); // self destruct !!!
+            
+            StartCoroutine(DESTRUCT());
+
         } else if (other.gameObject.gameObject.tag == "ghostbeam"){
 
             Debug.Log("FLY GONE.....!!!!!");
@@ -70,6 +72,8 @@ public AudioClip hit;
 
     IEnumerator DESTRUCT(){
         yield return new WaitForSeconds (0.5f); // after seconds , 
+
+        fly.Stop();
 
         Destroy(gameObject); // ... destroy gameobject!
         StopCoroutine(DESTRUCT());

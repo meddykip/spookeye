@@ -55,6 +55,8 @@ public class playerMovement : MonoBehaviour
 
     public bool HIGHSCORELETSGO = false;
 
+    public bool shootSTART = false;
+
 ////////////   REFERENCING others ..... /////////
 
     public GameObject spawngel; // to spawn the angels
@@ -143,8 +145,6 @@ public class playerMovement : MonoBehaviour
             spawngel.SetActive(true); // angels will start to spawn ...
             ghostbread.SetActive(true); // to activate the bread ....
             ghosTip.SetActive(true); // to activate shooting ...!!
-            
-            
 
             movie.SetBool("standing", false);
         } else {
@@ -154,6 +154,8 @@ public class playerMovement : MonoBehaviour
 
     // code for moving !!
         if (playerMOVE){
+            shootSTART = true;
+
             if(Input.GetKey(KeyCode.RightArrow)){
                 faceRight = true;
                 myRenderer.flipX = true;
@@ -171,19 +173,22 @@ public class playerMovement : MonoBehaviour
             } else {
                 moveDir = 0;
             }
+
+            
         }
         
 
     // code for shooting the bread !!
-        if(Input.GetKeyDown(KeyCode.RightControl) || (Input.GetKeyDown(KeyCode.LeftControl))){
-            Debug.Log("BANG ");
-            gunSFX.Play();
+    if (shootSTART){
+            if(Input.GetKeyDown(KeyCode.RightControl) || (Input.GetKeyDown(KeyCode.LeftControl))){
+                Debug.Log("BANG ");
+                gunSFX.Play();
 
-            SPOOKBREAD = true;
-        } else {
-            SPOOKBREAD = false;
+                SPOOKBREAD = true;
+            } else {
+                SPOOKBREAD = false;
+            }
         }
-
     }
 
     // code to handle movement from the tutorial... :)
